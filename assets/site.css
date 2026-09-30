@@ -262,8 +262,12 @@ section{padding:84px 0}
 /* ---------- gallery ---------- */
 .gallery{background:var(--paper-2);border-top:1px solid var(--line-light)}
 .gal-grid{display:flex;flex-wrap:wrap;gap:16px}
-.gal-grid img{flex:1 1 300px;width:calc(33.333% - 11px);
-  aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius)}
+/* square, not 4:3 — every source photo is portrait and the landscape crop
+   cut the technicians' heads and the tops of the cabs */
+/* flex-grow 0 is load-bearing: with 9 tiles in the two-column layout the
+   last one is alone on its row and would stretch to full width */
+.gal-grid img{flex:0 1 300px;width:calc(33.333% - 11px);
+  aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius)}
 
 /* ---------- fleet block ---------- */
 .fleet{background:var(--ink);color:#fff}
@@ -550,3 +554,16 @@ section{padding:84px 0}
      grows taller and the crop holds the faces instead of the full row */
   .team-photo{aspect-ratio:4/3;object-fit:cover}
 }
+
+/* ---------- square image slots beside text ----------
+   The wedge, fleet and careers images come from the same portrait shots, so
+   they are cropped square rather than 4:3 for the same reason as the gallery. */
+.wedge-media img,.fleet-media img{aspect-ratio:1/1;object-fit:cover}
+.col-side > img{aspect-ratio:1/1;object-fit:cover}
+
+/* ---------- team band ----------
+   The only team photo available is a 360x640 social export. Capping the drawn
+   width keeps the upscale near 2x instead of 3.3x; replace the file with the
+   original and this cap can go. */
+.team-photo{max-width:760px;margin:0 auto;aspect-ratio:3/2;object-fit:cover}
+@media(max-width:620px){ .team-photo{aspect-ratio:4/3} }
