@@ -446,3 +446,107 @@ section{padding:84px 0}
   .brandstrip .units{margin-left:0}
   .cols,.loc-grid,.wedge .wrap,.fleet .wrap{gap:36px}
 }
+
+/* ==========================================================================
+   Google Maps embed
+   The static map.jpg was replaced by a live embed. Note for anyone capturing
+   this page into Figma: an iframe imports as an empty rectangle. Screenshot
+   the map separately if the Figma frame needs to show it.
+   ========================================================================== */
+.map-embed{
+  position:relative;width:100%;aspect-ratio:4/3;
+  border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--line-light);background:var(--paper-2);
+}
+.map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+@media(max-width:620px){ .map-embed{aspect-ratio:1/1} }
+
+/* ==========================================================================
+   Motion
+   --------------------------------------------------------------------------
+   Two kinds: hover feedback, and a one-time reveal as sections scroll in.
+   Deliberately short and flat — 0.2-0.35s, ease-out, no bounce, no scale on
+   text. This is a diesel shop, not a startup landing page.
+
+   Three guards, all load-bearing:
+     1. prefers-reduced-motion disables everything
+     2. the reveal only hides things AFTER JS adds .js-motion to <html>, so a
+        page with JS blocked renders fully visible instead of blank
+     3. ?static in the URL skips the reveal entirely — use it when capturing
+        into Figma, or off-screen sections import at opacity 0
+   ========================================================================== */
+
+/* ---------- hover feedback ---------- */
+.btn{transition:background-color .2s ease,border-color .2s ease,color .2s ease,
+     transform .18s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-primary:hover{box-shadow:0 8px 22px rgba(237,112,2,.34)}
+
+.btn .arrow,.svc-group ul .arrow{transition:transform .2s ease,color .2s ease}
+.btn:hover .arrow,.svc-group ul a:hover .arrow{transform:translateX(4px)}
+
+.nav a,.topbar-right a,.ft-col a,.ft-nap a,.socials a,.crumbs a{transition:color .18s ease,border-color .18s ease}
+
+.svc-group{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.svc-group:hover{transform:translateY(-4px);border-color:var(--orange);
+  box-shadow:0 10px 30px rgba(13,13,15,.08)}
+.svc-group ul a{transition:color .18s ease,padding-left .18s ease}
+.svc-group ul a:hover{padding-left:4px}
+
+.why-card{transition:transform .22s ease}
+.why-card:hover{transform:translateY(-3px)}
+
+.rv-card{transition:transform .22s ease,box-shadow .22s ease}
+.rv-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(13,13,15,.08)}
+
+/* gallery: the image lifts and brightens inside a fixed frame, so the grid
+   never reflows on hover */
+.gal-grid img{transition:transform .35s ease,filter .35s ease;will-change:transform}
+.gal-grid a,.gal-grid .shot{overflow:hidden;border-radius:var(--radius);display:block}
+.gal-grid img:hover{transform:scale(1.04);filter:brightness(1.06)}
+
+/* the make names light up — small reward for the one thing a driver scans for */
+.makes span{transition:color .22s ease}
+.makes span:hover{color:#fff}
+
+.hdr-phone .n{transition:color .18s ease}
+.hdr-phone:hover .n{color:var(--orange)}
+
+.stat .v{transition:transform .22s ease}
+.stat:hover .v{transform:translateY(-2px)}
+
+.field input,.field select,.field textarea{transition:border-color .18s ease,box-shadow .18s ease}
+
+/* ---------- scroll reveal ---------- */
+.js-motion [data-reveal]{opacity:0;transform:translateY(14px)}
+.js-motion [data-reveal].is-in{
+  opacity:1;transform:none;
+  transition:opacity .5s ease-out,transform .5s ease-out;
+}
+/* stagger inside a group, capped so a 10-card grid doesn't crawl */
+.js-motion [data-reveal].is-in:nth-child(2){transition-delay:.06s}
+.js-motion [data-reveal].is-in:nth-child(3){transition-delay:.12s}
+.js-motion [data-reveal].is-in:nth-child(4){transition-delay:.18s}
+.js-motion [data-reveal].is-in:nth-child(5){transition-delay:.24s}
+.js-motion [data-reveal].is-in:nth-child(n+6){transition-delay:.28s}
+
+/* ---------- the guard that matters ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important;
+  }
+  .js-motion [data-reveal]{opacity:1 !important;transform:none !important}
+  .btn:hover,.svc-group:hover,.why-card:hover,.rv-card:hover,.stat:hover .v{transform:none}
+  .gal-grid img:hover{transform:none}
+}
+
+/* ---------- team band ---------- */
+.team{background:var(--paper)}
+.team-photo{width:100%;height:auto;border-radius:var(--radius);display:block}
+@media(max-width:620px){
+  /* a line-up of nine people goes unreadable at phone width, so the frame
+     grows taller and the crop holds the faces instead of the full row */
+  .team-photo{aspect-ratio:4/3;object-fit:cover}
+}

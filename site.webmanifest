@@ -1,0 +1,13 @@
+{
+  "name": "DieselHub Service",
+  "short_name": "DieselHub",
+  "description": "Heavy-duty truck and trailer repair in East Dundee, IL.",
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#0D0D0F",
+  "theme_color": "#0D0D0F",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

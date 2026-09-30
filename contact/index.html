@@ -14,6 +14,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0D0D0F">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
@@ -162,9 +168,14 @@
           <a class="btn btn-outline-dark" href="https://maps.google.com/?q=252+Patricia+Ln+East+Dundee+IL+60118">Get directions</a>
         </div>
 
-        <div class="panel" style="margin-top:20px;padding:0;overflow:hidden">
-          <!-- DEV: replace with a Google Maps embed iframe. -->
-          <img src="../assets/img/map.jpg" alt="Map showing DieselHub Service at 252 Patricia Ln, East Dundee, IL" width="960" height="720">
+        <div style="margin-top:20px">
+<div class="map-embed">
+          <iframe
+            src="https://maps.google.com/maps?q=DieselHub%20Service,%20252%20Patricia%20Ln,%20East%20Dundee,%20IL%2060118&amp;output=embed"
+            title="Map showing DieselHub Service at 252 Patricia Ln, East Dundee, IL 60118"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
         </div>
       </div>
     </div>
@@ -264,5 +275,6 @@
   </div>
 </div>
 
+<script src="../assets/motion.js" defer></script>
 </body>
 </html>

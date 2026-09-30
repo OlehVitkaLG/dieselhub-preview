@@ -19,6 +19,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0D0D0F">
 <link rel="stylesheet" href="assets/site.css">
 <script type="application/ld+json">
 {
@@ -375,54 +381,6 @@
       <a class="btn btn-outline-dark" href="https://search.google.com/local/reviews?placeid=ChIJk8-gBfYPD4gRhEBMLS6MnRE">See all reviews on Google <span class="arrow">→</span></a>
     </div>
 
-    
-    <p class="svc-note" style="margin:0 0 26px;border-left-color:#ED7002;background:#FFF6EE">
-      <b style="color:#B05201">⚠ SAMPLE TEXT — layout only.</b> Replace all three cards with
-      real reviews pulled verbatim from the Google Business Profile before launch, and
-      delete this line.</p>
-
-    <div class="rv-grid">
-      <div class="rv-card">
-        <div class="stars">★★★★★</div>
-        <p>“Brought it in with a derate and a dash full of codes. They found it, quoted it
-          before touching anything, and the bill matched the quote. That's all I want from
-          a shop.”</p>
-        <div class="rv-who">
-          <div class="avatar">S</div>
-          <div>
-            <div class="nm">Reviewer name</div>
-            <div class="rl">Owner-operator</div>
-          </div>
-          <div class="src">Google</div>
-        </div>
-      </div>
-      <div class="rv-card">
-        <div class="stars">★★★★★</div>
-        <p>“We run eleven trucks through here on PM intervals. Invoices are itemized per
-          unit, so I can actually see what each truck costs me. Been with them for years.”</p>
-        <div class="rv-who">
-          <div class="avatar">M</div>
-          <div>
-            <div class="nm">Reviewer name</div>
-            <div class="rl">Fleet maintenance manager</div>
-          </div>
-          <div class="src">Google</div>
-        </div>
-      </div>
-      <div class="rv-card">
-        <div class="stars">★★★★★</div>
-        <p>“Needed the California emissions test and figured I'd have to deal with it out
-          west. Got it done here in one stop with an oil change. Saved me two days.”</p>
-        <div class="rv-who">
-          <div class="avatar">D</div>
-          <div>
-            <div class="nm">Reviewer name</div>
-            <div class="rl">Owner-operator</div>
-          </div>
-          <div class="src">Google</div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -523,9 +481,13 @@
         </div>
       </div>
       <div class="loc-map">
-        <!-- DEV: replace with a Google Maps embed iframe. Kept as a static image so the
-             page captures cleanly into Figma — an iframe imports as an empty rectangle. -->
-        <img src="assets/img/map.jpg" alt="Map showing DieselHub Service at 252 Patricia Ln, East Dundee, IL" width="960" height="720">
+<div class="map-embed">
+          <iframe
+            src="https://maps.google.com/maps?q=DieselHub%20Service,%20252%20Patricia%20Ln,%20East%20Dundee,%20IL%2060118&amp;output=embed"
+            title="Map showing DieselHub Service at 252 Patricia Ln, East Dundee, IL 60118"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -602,5 +564,6 @@
   </div>
 </div>
 
+<script src="assets/motion.js" defer></script>
 </body>
 </html>

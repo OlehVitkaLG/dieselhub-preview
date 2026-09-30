@@ -3,7 +3,7 @@
 # robots.txt alone does NOT prevent indexing, it only asks crawlers not to fetch.
 # GitHub Pages cannot send HTTP headers, so the real control is the
 #   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-# tag in the <head> of all 28 pages. Do not remove it.
+# tag in the <head> of every page. Do not remove it.
 #
 # There is deliberately no Sitemap: line and no sitemap.xml here.
 
