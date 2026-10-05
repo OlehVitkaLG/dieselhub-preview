@@ -190,10 +190,10 @@ section{padding:84px 0}
 
 .rating{display:flex;align-items:center;gap:14px;
   border-top:1px solid var(--line-dark);padding-top:24px;max-width:560px}
-.rating .stars{color:var(--orange);font-size:19px;letter-spacing:2px}
-.rating .num{font-family:var(--font-display);font-style:normal;
-  font-weight:700;font-size:30px;color:#fff;line-height:1}
-.rating .txt{font-size:13.5px;color:var(--txt-dim);line-height:1.4}
+.rating .stars{color:var(--orange);font-size:21px;letter-spacing:2px}
+/* the numeric score was removed at the client's request; the review count
+   now carries the badge, so it steps up from a caption to a statement */
+.rating .txt{font-size:15.5px;color:#fff;font-weight:600;line-height:1.3}
 .hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;
   font-size:13.5px;color:#fff}
 .hero-meta .day{font-weight:400;color:#fff}
@@ -734,3 +734,14 @@ section{padding:84px 0}
 /* A1: adjacent same-coloured sections stacked 168px of padding between a
    paragraph and the next heading. Collapse the pair. */
 .location + .team,.team + .gallery,.location + .gallery{padding-top:0}
+
+/* ---------- location map ----------
+   Carto Positron basemap: roads and street names, no business pins. See the
+   note at the top of assets/map.js for why this is not Google. */
+.map-embed{background:var(--paper-2)}
+.map-embed .leaflet-container{width:100%;height:100%;border-radius:var(--radius);
+  font-family:var(--font-body)}
+.map-pin{background:none;border:0}
+.map-fallback{display:flex;align-items:center;justify-content:center;height:100%;
+  font-weight:700;color:var(--orange-text)}
+.leaflet-control-attribution{font-size:10px}
