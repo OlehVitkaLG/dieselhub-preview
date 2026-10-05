@@ -139,13 +139,17 @@ section{padding:84px 0}
 .arrow{font-family:var(--font-body);font-style:normal;font-weight:700}
 
 /* ---------- top utility bar ---------- */
-.topbar{background:#000;color:#8E8E99;font-size:14px}
+.topbar{background:#000;color:#fff;font-size:14px}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;
   gap:24px;height:42px;flex-wrap:wrap}
 .topbar-left{display:flex;gap:26px;flex-wrap:wrap}
+.topbar-left a{text-decoration:none}
+.topbar-left a:hover{color:var(--orange)}
 .topbar b{color:#fff;font-weight:600}
 /* the day label is the quiet part; the markup now wraps the HOURS in <b> */
-.topbar .day{color:#8E8E99;font-weight:400}
+/* O10: everything in this bar is white; only weight separates the day label
+   from the hours, so the line reads as one thing rather than two tones */
+.topbar .day{color:#fff;font-weight:400}
 .topbar-right{display:flex;gap:22px}
 .topbar-right a:hover{color:#fff}
 
@@ -178,7 +182,7 @@ section{padding:84px 0}
 .hero-media img{width:100%;height:100%;object-fit:cover}
 .hero-scrim{position:absolute;top:0;left:0;width:100%;height:100%;
   background:linear-gradient(90deg,#0D0D0F 0%,#0D0D0F 54%,rgba(13,13,15,.72) 68%,rgba(13,13,15,.34) 100%)}
-.hero .wrap{position:relative;padding-top:96px;padding-bottom:96px}
+.hero .wrap{position:relative;padding-top:62px;padding-bottom:62px}
 .hero-inner{max-width:760px}
 .hero h1{color:#fff;margin-bottom:26px}
 .hero .lead{color:#C9C9D1;font-size:18.5px;max-width:560px;margin-bottom:34px}
@@ -191,22 +195,23 @@ section{padding:84px 0}
   font-weight:700;font-size:30px;color:#fff;line-height:1}
 .rating .txt{font-size:13.5px;color:var(--txt-dim);line-height:1.4}
 .hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;
-  font-size:13.5px;color:var(--txt-dim)}
+  font-size:13.5px;color:#fff}
+.hero-meta .day{font-weight:400;color:#fff}
 .hero-meta b{color:#fff;font-weight:600}
 
 /* ---------- brand strip ---------- */
 .brandstrip{background:var(--ink-2);border-bottom:1px solid var(--line-dark);
-  padding:38px 0}
-.brandstrip .wrap{display:flex;align-items:center;gap:44px;flex-wrap:wrap}
+  padding:26px 0}
+.brandstrip .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 .brandstrip .label{font-size:12px;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:var(--orange);line-height:1.5;max-width:112px}
-.makes{display:flex;gap:38px;flex-wrap:wrap;align-items:center}
+.makes{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .makes span{
   font-family:var(--font-display);font-style:normal;font-weight:700;
-  font-size:26px;text-transform:uppercase;color:#8B8B95;letter-spacing:.01em;
+  font-size:22px;text-transform:uppercase;color:#8B8B95;letter-spacing:.01em;
 }
-.brandstrip .units{font-size:14px;color:var(--txt-dim);margin-left:auto;
-  max-width:250px;line-height:1.5}
+.brandstrip .units{font-size:13.5px;color:var(--txt-dim);margin-left:auto;
+  white-space:nowrap;line-height:1.5}
 .brandstrip .units b{color:#fff;font-weight:600}
 
 /* ---------- why us ---------- */
@@ -237,9 +242,13 @@ section{padding:84px 0}
 .svc-group ul a:hover{color:var(--orange-text)}
 .svc-group ul .arrow{color:var(--paper-3);font-size:14px}
 .svc-group ul a:hover .arrow{color:var(--orange-text)}
-.svc-note{margin-top:34px;padding:22px 26px;background:#fff;
+/* paired with .not-us: one says call us, the other says what we will not take
+   on. Stacked, the second read as a continuation of the first. */
+.svc-pair{display:flex;gap:20px;flex-wrap:wrap;margin-top:34px;align-items:stretch}
+.svc-pair > *{flex:1 1 340px;margin-top:0}
+.svc-note{padding:22px 26px;background:#fff;
   border-left:3px solid var(--orange);border-radius:0 var(--radius) var(--radius) 0;
-  font-size:15px;color:var(--txt-mid);max-width:820px}
+  font-size:15px;color:var(--txt-mid)}
 .svc-note b{color:var(--txt-dark)}
 
 /* ---------- CARB wedge ---------- */
@@ -332,11 +341,14 @@ section{padding:84px 0}
 .hours-table td{padding:12px 0;border-bottom:1px solid var(--line-light);font-size:15px}
 .hours-table td:last-child{text-align:right;font-weight:700}
 .hours-table tr:last-child td{border-bottom:0;color:var(--txt-mid)}
-.loc-facts{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+/* the gap belongs between pairs, not between a label and its own value */
+.loc-facts{display:flex;flex-direction:column;gap:20px;margin-bottom:28px}
 .loc-facts li{font-size:15px;color:var(--txt-mid)}
-.loc-facts b{color:var(--txt-dark);font-weight:700;
+/* direct child only. This matched every <b> nested inside a list item, so a
+   bold phrase mid-sentence became an uppercase block and orphaned its full stop. */
+.loc-facts > li > b:first-child{color:var(--txt-dark);font-weight:700;
   display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:3px}
+  margin-bottom:2px}
 .loc-map{flex:1 1 420px}
 .loc-map img{width:100%;border-radius:var(--radius);border:1px solid var(--line-light)}
 
@@ -359,7 +371,13 @@ section{padding:84px 0}
 .socials{display:flex;gap:10px;margin-top:6px}
 .socials a{width:38px;height:38px;border:1px solid var(--line-dark);
   border-radius:8px;display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;color:#D6D6DB}
+  color:#D6D6DB}
+/* optically matched, not nominally: the three glyphs fill their viewBox by
+   different amounts, so equal width would look unequal */
+.socials svg{display:block}
+.socials .i-fb svg{width:18px;height:18px}
+.socials .i-ig svg{width:17px;height:17px}
+.socials .i-gg svg{width:17.5px;height:17.5px}
 .socials a:hover{border-color:var(--orange);color:var(--orange)}
 .ft-bottom{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
   padding:26px 0;font-size:13px}
@@ -520,6 +538,8 @@ section{padding:84px 0}
 .why-card{transition:transform .22s ease}
 .why-card:hover{transform:translateY(-3px)}
 
+.wait-card,.rate-card{transition:transform .22s ease,border-color .22s ease}
+.wait-card:hover,.rate-card:hover{transform:translateY(-4px);border-color:var(--orange)}
 .rv-card{transition:transform .22s ease,box-shadow .22s ease}
 .rv-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(13,13,15,.08)}
 
@@ -595,7 +615,7 @@ section{padding:84px 0}
    ========================================================================== */
 .rate-strip{background:var(--ink);color:#fff}
 .rate-cards{display:flex;gap:20px;flex-wrap:wrap}
-.rate-card{flex:1 1 220px;background:var(--ink-2);border:1px solid var(--ink-3);
+.rate-card{flex:0 1 calc(25% - 15px);min-width:210px;background:var(--ink-2);border:1px solid var(--ink-3);
   border-radius:var(--radius);padding:24px}
 .rate-card .k{font-size:12px;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--txt-dim);margin-bottom:10px}
@@ -618,7 +638,6 @@ section{padding:84px 0}
 .price-table td:last-child{text-align:right;font-weight:700;white-space:nowrap}
 .price-table tr:last-child td{border-bottom:0}
 .price-table .sub{display:block;font-size:13.5px;color:var(--txt-mid);margin-top:3px}
-.price-table .hl td{background:var(--orange-soft)}
 .price-note{font-size:14.5px;color:var(--txt-mid);margin-bottom:40px;max-width:720px}
 
 /* ==========================================================================
@@ -630,14 +649,16 @@ section{padding:84px 0}
   font-size:14px;font-weight:600;color:var(--txt-dark)}
 .pay svg{height:22px;width:auto;display:block}
 .panel.dark .pay,.wedge .pay,.fleet .pay{background:var(--ink-2);border-color:var(--ink-3);color:#fff}
-.pay-fee{font-size:14px;color:var(--txt-mid);max-width:560px}
+.pay-fee{font-size:12.5px;line-height:1.55;color:var(--txt-mid);max-width:560px;margin-top:6px}
 .pay-fee b{color:var(--txt-dark)}
 
 /* ==========================================================================
    Team
    ========================================================================== */
+/* flex-grow:0 wherever a grid can leave one item alone on the last row —
+   the third component that needed this fix */
 .team-grid{display:flex;flex-wrap:wrap;gap:22px}
-.person{flex:1 1 210px;max-width:260px}
+.person{flex:0 1 calc(33.333% - 15px);max-width:none}
 .person img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius);
   margin-bottom:14px}
 .person .nm{font-family:var(--font-display);font-weight:700;text-transform:uppercase;
@@ -671,7 +692,7 @@ section{padding:84px 0}
    ========================================================================== */
 .wait{background:var(--ink);color:#fff}
 .wait-grid{display:flex;gap:22px;flex-wrap:wrap}
-.wait-card{flex:1 1 240px;background:var(--ink-2);border:1px solid var(--ink-3);
+.wait-card{flex:0 1 calc(25% - 17px);min-width:220px;background:var(--ink-2);border:1px solid var(--ink-3);
   border-radius:var(--radius);padding:24px}
 .wait-card svg{width:26px;height:26px;margin-bottom:14px;display:block}
 .wait-card h3{color:#fff;font-size:20px;margin-bottom:8px}
@@ -683,7 +704,7 @@ section{padding:84px 0}
    ========================================================================== */
 .not-us{display:flex;gap:18px;align-items:flex-start;
   background:#fff;border:1px solid var(--line-light);border-left:3px solid var(--ink);
-  border-radius:0 var(--radius) var(--radius) 0;padding:24px 26px;margin-top:34px}
+  border-radius:0 var(--radius) var(--radius) 0;padding:24px 26px}
 .not-us .mark{font-family:var(--font-display);font-weight:700;font-size:30px;
   color:var(--ink);line-height:.9;flex:0 0 auto}
 .not-us h3{font-size:19px;margin-bottom:8px}
@@ -704,3 +725,12 @@ section{padding:84px 0}
 
 .map-note{font-size:14px;color:var(--txt-mid);margin-top:12px}
 .map-note a{color:var(--orange-text)}
+
+/* real brand glyphs, one colour — see the note in the build script */
+.pay svg{height:15px;width:auto;color:var(--ink)}
+.pay-text{font-weight:700;letter-spacing:.04em}
+.panel.dark .pay svg,.wedge .pay svg,.fleet .pay svg,.wait .pay svg{color:#fff}
+
+/* A1: adjacent same-coloured sections stacked 168px of padding between a
+   paragraph and the next heading. Collapse the pair. */
+.location + .team,.team + .gallery,.location + .gallery{padding-top:0}
