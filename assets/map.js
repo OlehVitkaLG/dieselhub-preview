@@ -50,6 +50,17 @@
      .addTo(map)
      .bindPopup('<b>DieselHub Service</b><br>252 Patricia Ln<br>East Dundee, IL 60118');
 
+    // Esri does not label Patricia Ln or draw the building at any zoom, so the
+    // map would otherwise be a pin in an unnamed block. This names it.
+    L.marker([lat, lon], {
+      interactive: false,
+      icon: L.divIcon({
+        className: 'map-label',
+        html: '<span>DieselHub Service<br><b>252 Patricia Ln</b></span>',
+        iconSize: [160, 40], iconAnchor: [-23, 34]
+      })
+    }).addTo(map);
+
     // a map that swallows the page scroll is a mobile trap; click to enable
     map.on('click', function () { map.scrollWheelZoom.enable(); });
   }
