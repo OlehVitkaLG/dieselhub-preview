@@ -36,7 +36,9 @@
   --txt-light: #FFFFFF;
   --txt-dim:   #9A9AA4;
 
-  --line-light: #E1E1E4;
+  --line-light: #E1E1E4;   /* decorative separators — no contrast duty */
+  --line-control: #888890; /* the visible edge of a control — 3.5:1 on white,
+                              3.2:1 on the grey panels, which is the tighter case */
   --line-dark:  rgba(255,255,255,.10);
 
   --radius: 10px;
@@ -81,6 +83,8 @@ h1,h2,h3,h4,.display{
   font-style:normal;font-weight:700;text-transform:uppercase;
   line-height:.94;letter-spacing:-.005em;
 }
+/* balance stops a single short word hanging alone on the last line */
+h1,h2,h3{text-wrap:balance}
 h1{font-size:64px}
 h2{font-size:44px}
 h3{font-size:24px}
@@ -98,7 +102,8 @@ h1 .o,h2 .o,.addr .o{color:var(--orange)}  /* display sizes clear the large-text
 
 /* Small orange text sits on dark in these contexts, so it can use full brand orange. */
 .hero .eyebrow,.page-hero .eyebrow,.wedge .eyebrow,.fleet .eyebrow,
-.hero .o,.page-hero .o,.wedge .o,.fleet .o,
+.rate-strip .eyebrow,.wait .eyebrow,
+.hero .o,.page-hero .o,.wedge .o,.fleet .o,.rate-strip .o,.wait .o,
 .panel.dark .o,.site-footer .o,.stats .o{color:var(--orange)}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
@@ -117,9 +122,12 @@ section{padding:84px 0}
    Black on orange is 6.9:1 and echoes the logo's own black-and-orange pairing. */
 .btn-primary{background:var(--orange);color:var(--ink);border-color:var(--orange)}
 .btn-primary:hover{background:var(--orange-dark);border-color:var(--orange-dark);color:#fff}
-.btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.32)}
+/* .32 alpha measured 2.84:1 on the dark backgrounds — just under the 3:1
+   floor for a control boundary. .42 puts it at 4.0:1. */
+.btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.42)}
 .btn-outline-light:hover{border-color:#fff}
-.btn-outline-dark{background:transparent;color:var(--ink);border-color:var(--paper-3)}
+/* was --paper-3 at 1.2:1 — the secondary button was all but invisible */
+.btn-outline-dark{background:transparent;color:var(--ink);border-color:var(--line-control)}
 .btn-outline-dark:hover{border-color:var(--ink)}
 .btn-black{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn-white{background:#fff;color:var(--ink);border-color:#fff}
@@ -131,21 +139,28 @@ section{padding:84px 0}
 .arrow{font-family:var(--font-body);font-style:normal;font-weight:700}
 
 /* ---------- top utility bar ---------- */
-.topbar{background:#000;color:var(--txt-dim);font-size:13px}
+.topbar{background:#000;color:#8E8E99;font-size:14px}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;
   gap:24px;height:42px;flex-wrap:wrap}
 .topbar-left{display:flex;gap:26px;flex-wrap:wrap}
 .topbar b{color:#fff;font-weight:600}
+/* the day label is the quiet part; the markup now wraps the HOURS in <b> */
+.topbar .day{color:#8E8E99;font-weight:400}
 .topbar-right{display:flex;gap:22px}
 .topbar-right a:hover{color:#fff}
 
 /* ---------- header ---------- */
-.site-header{background:var(--ink);border-bottom:1px solid var(--line-dark)}
-.site-header .wrap{display:flex;align-items:center;gap:32px;height:96px}
-.brand img{height:52px;width:auto}
+/* Sticky so the phone number never scrolls away — the one thing a driver on a
+   phone needs at any moment. .is-static (set by motion.js when ?static is in
+   the URL) pins it back, because sticky captures at the wrong offset in Figma. */
+.site-header{background:var(--ink);border-bottom:1px solid var(--line-dark);
+  position:sticky;top:0;z-index:60}
+.is-static .site-header{position:static}
+.site-header .wrap{display:flex;align-items:center;gap:36px;height:108px}
+.brand img{height:66px;width:auto}
 .nav{display:flex;gap:26px;margin-left:auto}
 .nav a{
-  font-size:13.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   color:#D6D6DB;white-space:nowrap;
 }
 .nav a:hover,.nav a.is-active{color:var(--orange)}
@@ -153,18 +168,18 @@ section{padding:84px 0}
 .hdr-phone{display:flex;flex-direction:column;line-height:1.25}
 .hdr-phone .n{
   font-family:var(--font-display);font-style:normal;font-weight:700;
-  font-size:25px;color:#fff;letter-spacing:.01em;
+  font-size:30px;color:#fff;letter-spacing:.01em;
 }
-.hdr-phone .l{font-size:11.5px;color:var(--txt-dim);letter-spacing:.04em}
+.hdr-phone .l{font-size:12px;color:var(--txt-dim);letter-spacing:.04em}
 
 /* ---------- hero ---------- */
 .hero{background:var(--ink);position:relative;overflow:hidden}
-.hero-media{position:absolute;top:0;right:0;width:54%;height:100%}
+.hero-media{position:absolute;top:0;right:0;width:50%;height:100%}
 .hero-media img{width:100%;height:100%;object-fit:cover}
 .hero-scrim{position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(90deg,#0D0D0F 0%,#0D0D0F 50%,rgba(13,13,15,.72) 64%,rgba(13,13,15,.34) 100%)}
+  background:linear-gradient(90deg,#0D0D0F 0%,#0D0D0F 54%,rgba(13,13,15,.72) 68%,rgba(13,13,15,.34) 100%)}
 .hero .wrap{position:relative;padding-top:96px;padding-bottom:96px}
-.hero-inner{max-width:700px}
+.hero-inner{max-width:760px}
 .hero h1{color:#fff;margin-bottom:26px}
 .hero .lead{color:#C9C9D1;font-size:18.5px;max-width:560px;margin-bottom:34px}
 .hero .btn-row{margin-bottom:34px}
@@ -183,14 +198,14 @@ section{padding:84px 0}
 .brandstrip{background:var(--ink-2);border-bottom:1px solid var(--line-dark);
   padding:38px 0}
 .brandstrip .wrap{display:flex;align-items:center;gap:44px;flex-wrap:wrap}
-.brandstrip .label{font-size:11px;font-weight:700;letter-spacing:.18em;
+.brandstrip .label{font-size:12px;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:var(--orange);line-height:1.5;max-width:112px}
 .makes{display:flex;gap:38px;flex-wrap:wrap;align-items:center}
 .makes span{
   font-family:var(--font-display);font-style:normal;font-weight:700;
   font-size:26px;text-transform:uppercase;color:#8B8B95;letter-spacing:.01em;
 }
-.brandstrip .units{font-size:13.5px;color:var(--txt-dim);margin-left:auto;
+.brandstrip .units{font-size:14px;color:var(--txt-dim);margin-left:auto;
   max-width:250px;line-height:1.5}
 .brandstrip .units b{color:#fff;font-weight:600}
 
@@ -201,7 +216,9 @@ section{padding:84px 0}
 .why-card .num{font-family:var(--font-display);font-style:normal;
   font-weight:700;font-size:15px;color:var(--orange-text);letter-spacing:.1em;
   margin-bottom:12px}
-.why-card h3{margin-bottom:12px;font-size:23px}
+/* two lines reserved: without it a one-line heading starts its paragraph
+   higher than a two-line one and the row of cards reads as ragged */
+.why-card h3{margin-bottom:18px;font-size:23px;min-height:calc(2 * 23px * .94)}
 .why-card p{font-size:15px;color:var(--txt-mid)}
 
 /* ---------- services ---------- */
@@ -298,7 +315,9 @@ section{padding:84px 0}
   gap:40px;flex-wrap:wrap}
 .ctaband h2{color:var(--ink);font-size:40px;max-width:760px}
 .ctaband p{font-size:16.5px;color:var(--ink);max-width:560px;margin-top:14px}
-.ctaband .btn-outline-light{color:var(--ink);border-color:rgba(13,13,15,.38)}
+/* solid, not 38% alpha: the faded border measured 1.6:1 on orange where UI
+   boundaries need 3:1, so the button read as orange on orange */
+.ctaband .btn-outline-light{color:var(--ink);border-color:var(--ink)}
 .ctaband .btn-outline-light:hover{border-color:var(--ink);color:var(--ink)}
 .ctaband .btn-white{background:var(--ink);color:#fff;border-color:var(--ink)}
 
@@ -395,7 +414,7 @@ section{padding:84px 0}
   text-transform:uppercase;color:var(--txt-dark);margin-bottom:8px}
 .field input,.field select,.field textarea{
   width:100%;padding:15px 16px;font-family:var(--font-body);font-size:15.5px;
-  color:var(--txt-dark);background:#fff;border:1px solid var(--paper-3);
+  color:var(--txt-dark);background:#fff;border:1px solid var(--line-control);
   border-radius:8px;
 }
 .field textarea{min-height:132px;resize:vertical}
@@ -511,8 +530,8 @@ section{padding:84px 0}
 .gal-grid img:hover{transform:scale(1.04);filter:brightness(1.06)}
 
 /* the make names light up — small reward for the one thing a driver scans for */
-.makes span{transition:color .22s ease}
-.makes span:hover{color:#fff}
+/* no hover here on purpose: these are not links, and highlighting them on
+   hover promises a click that goes nowhere */
 
 .hdr-phone .n{transition:color .18s ease}
 .hdr-phone:hover .n{color:var(--orange)}
@@ -567,3 +586,121 @@ section{padding:84px 0}
    original and this cap can go. */
 .team-photo{max-width:760px;margin:0 auto;aspect-ratio:3/2;object-fit:cover}
 @media(max-width:620px){ .team-photo{aspect-ratio:4/3} }
+
+/* ==========================================================================
+   Pricing
+   Published rates are the strongest thing this shop can say that the
+   competitors nearby do not. They are laid out as a readable table, not
+   marketing cards, because the audience is checking a number.
+   ========================================================================== */
+.rate-strip{background:var(--ink);color:#fff}
+.rate-cards{display:flex;gap:20px;flex-wrap:wrap}
+.rate-card{flex:1 1 220px;background:var(--ink-2);border:1px solid var(--ink-3);
+  border-radius:var(--radius);padding:24px}
+.rate-card .k{font-size:12px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--txt-dim);margin-bottom:10px}
+.rate-card .v{font-family:var(--font-display);font-weight:700;font-size:40px;
+  color:var(--orange);line-height:1}
+.rate-card .n{font-size:14px;color:#C2C2CB;margin-top:8px}
+
+.price-table{width:100%;border-collapse:collapse;margin-bottom:34px}
+.price-table caption{
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
+  font-size:24px;text-align:left;padding-bottom:14px;color:var(--txt-dark);
+}
+.price-table th{
+  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--txt-mid);text-align:left;padding:0 0 10px;
+  border-bottom:1px solid var(--line-light);
+}
+.price-table th:last-child{text-align:right}
+.price-table td{padding:14px 0;border-bottom:1px solid var(--line-light);font-size:16px}
+.price-table td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+.price-table tr:last-child td{border-bottom:0}
+.price-table .sub{display:block;font-size:13.5px;color:var(--txt-mid);margin-top:3px}
+.price-table .hl td{background:var(--orange-soft)}
+.price-note{font-size:14.5px;color:var(--txt-mid);margin-bottom:40px;max-width:720px}
+
+/* ==========================================================================
+   Payment methods — logos read instantly where a comma-separated list does not
+   ========================================================================== */
+.pay-grid{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 18px}
+.pay{display:flex;align-items:center;gap:10px;background:#fff;
+  border:1px solid var(--line-light);border-radius:8px;padding:10px 14px;
+  font-size:14px;font-weight:600;color:var(--txt-dark)}
+.pay svg{height:22px;width:auto;display:block}
+.panel.dark .pay,.wedge .pay,.fleet .pay{background:var(--ink-2);border-color:var(--ink-3);color:#fff}
+.pay-fee{font-size:14px;color:var(--txt-mid);max-width:560px}
+.pay-fee b{color:var(--txt-dark)}
+
+/* ==========================================================================
+   Team
+   ========================================================================== */
+.team-grid{display:flex;flex-wrap:wrap;gap:22px}
+.person{flex:1 1 210px;max-width:260px}
+.person img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius);
+  margin-bottom:14px}
+.person .nm{font-family:var(--font-display);font-weight:700;text-transform:uppercase;
+  font-size:21px;line-height:1;margin-bottom:6px}
+.person .rl{font-size:14px;color:var(--txt-mid)}
+.person .yr{font-size:13px;color:var(--orange-text);font-weight:700;margin-top:4px}
+
+/* ==========================================================================
+   Before / after
+   Pairs, never a single image: the point is the comparison.
+   ========================================================================== */
+.ba-grid{display:flex;flex-wrap:wrap;gap:26px}
+.ba{flex:1 1 320px;background:#fff;border:1px solid var(--line-light);
+  border-radius:var(--radius);overflow:hidden}
+.ba-pair{display:flex}
+.ba-pair figure{flex:1 1 50%;margin:0;position:relative}
+.ba-pair img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.ba-pair figcaption{
+  position:absolute;top:10px;left:10px;
+  background:rgba(13,13,15,.82);color:#fff;
+  font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 9px;border-radius:4px;
+}
+.ba-pair figure + figure figcaption{background:var(--orange);color:var(--ink)}
+.ba-body{padding:20px 22px}
+.ba-body h3{font-size:20px;margin-bottom:8px}
+.ba-body p{font-size:14.5px;color:var(--txt-mid)}
+
+/* ==========================================================================
+   While you wait
+   ========================================================================== */
+.wait{background:var(--ink);color:#fff}
+.wait-grid{display:flex;gap:22px;flex-wrap:wrap}
+.wait-card{flex:1 1 240px;background:var(--ink-2);border:1px solid var(--ink-3);
+  border-radius:var(--radius);padding:24px}
+.wait-card svg{width:26px;height:26px;margin-bottom:14px;display:block}
+.wait-card h3{color:#fff;font-size:20px;margin-bottom:8px}
+.wait-card p{font-size:14.5px;color:#C2C2CB}
+
+/* ==========================================================================
+   "What we don't do" — pulled out of the services lead, where it read as a
+   continuation of the list instead of its opposite
+   ========================================================================== */
+.not-us{display:flex;gap:18px;align-items:flex-start;
+  background:#fff;border:1px solid var(--line-light);border-left:3px solid var(--ink);
+  border-radius:0 var(--radius) var(--radius) 0;padding:24px 26px;margin-top:34px}
+.not-us .mark{font-family:var(--font-display);font-weight:700;font-size:30px;
+  color:var(--ink);line-height:.9;flex:0 0 auto}
+.not-us h3{font-size:19px;margin-bottom:8px}
+.not-us p{font-size:15px;color:var(--txt-mid)}
+.not-us b{color:var(--txt-dark)}
+
+@media(max-width:900px){
+  .site-header .wrap{height:84px}
+  .brand img{height:54px}
+  .ba-pair img{aspect-ratio:4/5}
+}
+@media(max-width:620px){
+  .brand img{height:46px}
+  .price-table td{font-size:15px}
+  .rate-card .v{font-size:34px}
+  .person{max-width:none;flex:1 1 140px}
+}
+
+.map-note{font-size:14px;color:var(--txt-mid);margin-top:12px}
+.map-note a{color:var(--orange-text)}

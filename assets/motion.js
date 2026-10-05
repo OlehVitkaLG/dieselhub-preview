@@ -14,7 +14,13 @@
 (function () {
   try {
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || /[?&]static\b/.test(location.search)) return;
+    if (/[?&]static\b/.test(location.search)) {
+      // ?static also un-sticks the header: position:sticky captures at the wrong
+      // offset in html.to.figma, so the page has to be flat for a capture.
+      document.documentElement.classList.add('is-static');
+      return;
+    }
+    if (reduced) return;
 
     var SELECTORS = [
       '.section-head', '.why-card', '.svc-group', '.svc-note',
