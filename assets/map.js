@@ -2,9 +2,16 @@
 
    Why not Google: the free Google embed renders every business around us,
    including four competing shops within a few hundred metres, and it offers no
-   parameter to suppress them. Hiding them on Google needs a Maps Platform API
-   key, which this account does not have. Carto's Positron basemap carries roads
-   and street names but no business pins, so the only marker on it is ours.
+   parameter to suppress them. Hiding them on Google needs a paid Maps Platform
+   key.
+
+   Why Esri and not an OpenStreetMap source: this industrial park is barely
+   mapped in OSM. Neither Nominatim nor the US Census geocoder can even resolve
+   Patricia Ln, and an OSM tile of this spot comes back 88% empty. Carto was
+   tried first and now returns an "API KEY REQUIRED" watermark with HTTP 200 —
+   which is why a tile source has to be judged on its PIXELS, not its status
+   code. Esri's street basemap has the buildings, the roads and the street
+   names, and carries no business pins, so the only marker on it is ours.
 
    Loaded on demand: Leaflet is ~45 KB and the map is far below the fold, so
    nothing is fetched until the block is close to the viewport. */
@@ -25,9 +32,9 @@
     var lat = parseFloat(el.dataset.lat), lon = parseFloat(el.dataset.lon);
     var map = L.map(el, { scrollWheelZoom: false, attributionControl: true })
                .setView([lat, lon], 16);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap &copy; CARTO'
+      attribution: 'Tiles &copy; Esri'
     }).addTo(map);
 
     // brand-coloured pin drawn inline rather than shipping an image

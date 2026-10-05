@@ -1,5 +1,3 @@
-# STAGING PREVIEW - not the live site. Nothing here should be indexed.
-# robots.txt alone does not prevent indexing. GitHub Pages cannot send HTTP
-# headers, so the real control is the meta robots noindex tag on every page.
+# STAGING PREVIEW - not the live site.
 User-agent: *
 Disallow: /
