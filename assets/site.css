@@ -249,6 +249,11 @@ section{padding:84px 0}
 .svc-group ul a:hover{color:var(--orange-text)}
 .svc-group ul .arrow{color:var(--paper-3);font-size:14px}
 .svc-group ul a:hover .arrow{color:var(--orange-text)}
+/* Items the shop does that have no page of their own yet. Same rhythm as the
+   links, muted and without an arrow, so nothing promises a page that is not
+   there — and nothing looks like a link that failed to work. */
+.svc-group ul .plain{display:flex;align-items:center;padding:11px 0;
+  font-size:15px;font-weight:600;color:var(--txt-mid)}
 /* paired with .not-us: one says call us, the other says what we will not take
    on. Stacked, the second read as a continuation of the first. */
 .svc-pair{display:flex;gap:20px;flex-wrap:wrap;margin-top:34px;align-items:stretch}
@@ -703,7 +708,7 @@ section{padding:84px 0}
    ========================================================================== */
 .wait{background:var(--ink);color:#fff}
 .wait-grid{display:flex;gap:22px;flex-wrap:wrap}
-.wait-card{flex:0 1 calc(25% - 17px);min-width:220px;background:var(--ink-2);border:1px solid var(--ink-3);
+.wait-card{flex:0 1 calc(33.333% - 15px);min-width:260px;background:var(--ink-2);border:1px solid var(--ink-3);
   border-radius:var(--radius);padding:24px}
 .wait-card svg{width:26px;height:26px;margin-bottom:14px;display:block}
 .wait-card h3{color:#fff;font-size:20px;margin-bottom:8px}
