@@ -25,7 +25,7 @@
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=ef176940">
 <link rel="manifest" href="site.webmanifest?v=03669151">
 <meta name="theme-color" content="#0D0D0F">
-<link rel="stylesheet" href="assets/site.css?v=faee4496">
+<link rel="stylesheet" href="assets/site.css?v=ecd6d961">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -150,14 +150,13 @@
         <a class="btn btn-primary" href="tel:+16304921682">Call (630) 492-1682</a>
         <a class="btn btn-outline-light" href="contact/index.html">Request Service</a>
       </div>
-      <div class="rating">
-          <span class="stars">★★★★★</span>
-          <span class="txt">107 reviews on Google</span>
-        </div>
+      <a class="rating" href="https://www.google.com/maps/place/?q=place_id:ChIJk8-gBfYPD4gRhEBMLS6MnRE">
+        <span class="stars">★★★★★</span>
+        <span class="txt"><b data-count="107">107</b> reviews on Google</span>
+      </a>
       <div class="hero-meta">
-        <span><span class="day">Mon–Fri</span> <b>8 AM–5 PM</b></span>
-        <span><span class="day">Sat</span> <b>8 AM–2 PM</b></span>
-        <span><span class="day">Sun</span> <b>Closed</b></span>
+        <span class="status" data-shop-status hidden><span class="dot"></span><span class="st-txt"></span></span>
+        <span class="week">Mon–Fri 8 AM–5 PM &nbsp;·&nbsp; Sat 8 AM–2 PM &nbsp;·&nbsp; Sun closed</span>
       </div>
     </div>
   </div>
@@ -166,15 +165,25 @@
 <!-- ============ BRAND / UNIT STRIP ============ -->
 <div class="brandstrip">
   <div class="wrap">
-    <div class="label">We service</div>
-    <div class="makes">
-      <span>Volvo</span>
-      <span>Freightliner</span>
-      <span>Peterbilt</span>
-      <span>Kenworth</span>
-      <span>International</span>
+    <div class="bs-row">
+      <div class="label">Trucks</div>
+      <div class="makes">
+        <span>Volvo</span>
+        <span>Freightliner</span>
+        <span>Peterbilt</span>
+        <span>Kenworth</span>
+        <span>International</span>
+      </div>
     </div>
-    <div class="units"><b>Trailers:</b> Dry van, Reefer, Flatbed and others</div>
+    <div class="bs-row">
+      <div class="label">Trailers</div>
+      <div class="makes">
+        <span>Dry van</span>
+        <span>Reefer</span>
+        <span>Flatbed</span>
+        <span>And others</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -207,9 +216,9 @@
       </div>
       <div class="why-card">
         <div class="num">04</div>
-        <h3>Ten years<br>of diesel work</h3>
-        <p>Repairing trucks and trailers in East Dundee since 2016. Long enough to have
-          seen your problem before, and to tell you straight what it will take.</p>
+        <h3>Ten years<br>in business</h3>
+        <p>We have been repairing trucks and trailers in East Dundee since 2016. Most of
+          what comes through the door is something we have fixed before.</p>
       </div>
     </div>
   </div>
@@ -344,44 +353,6 @@
       code, or the light on your dash. We've heard it before, and a two-minute phone call is cheaper
       than a diagnostic you didn't need. <a href="tel:+16304921682" class="o"><b>(630) 492-1682</b></a></p>
 
-    </div>
-  </div>
-</section>
-
-<!-- ============ RATES ============ -->
-<section class="rate-strip">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">What it costs</p>
-      <h2>Our rates are on the website</h2>
-      <p class="lead" style="color:#C2C2CB">Most shops make you call to find out. Here is the
-        labor rate and what the common jobs cost, before you commit to anything.</p>
-    </div>
-    <div class="rate-cards">
-      <div class="rate-card">
-        <div class="k">Standard labor</div>
-        <div class="v">$130<span style="font-size:.45em">/hr</span></div>
-        <div class="n">$120/hr for fleets of 10 or more</div>
-      </div>
-      <div class="rate-card">
-        <div class="k">Annual DOT inspection</div>
-        <div class="v">$85</div>
-        <div class="n">The federally required periodic inspection</div>
-      </div>
-      <div class="rate-card">
-        <div class="k">CARB Clean Truck Check</div>
-        <div class="v">$100</div>
-        <div class="n">We are a credentialed tester</div>
-      </div>
-      <div class="rate-card">
-        <div class="k">PM service</div>
-        <div class="v">By make</div>
-        <div class="n">Oil, grease, filters and labor — see the list for your truck</div>
-      </div>
-    </div>
-    <div class="btn-row" style="margin-top:30px">
-      <a class="btn btn-primary" href="pricing/index.html">See the full price list</a>
-      <a class="btn btn-outline-light" href="tel:+16304921682">Ask about your job</a>
     </div>
   </div>
 </section>
@@ -737,5 +708,6 @@
 </div>
 
 <script src="assets/motion.js?v=f19b479b" defer></script>
+<script src="assets/shop-status.js?v=0c56deed" defer></script>
 </body>
 </html>
