@@ -159,7 +159,8 @@ section{padding:84px 0}
 .topbar-left{display:flex;gap:26px;flex-wrap:wrap}
 .topbar-left a{text-decoration:none}
 .topbar-left a:hover{color:var(--orange)}
-.topbar b{color:#fff;font-weight:600}
+.topbar .hrs{color:#A8A8B4}
+.topbar .hrs b{color:#fff;font-weight:600}
 /* Same markup as the footer set, without the boxes: at 42px tall the bar has no
    room for a 38px tile, and bare glyphs sit better beside plain text links. */
 .topbar .socials{gap:14px;margin-top:0}
@@ -170,7 +171,6 @@ section{padding:84px 0}
 /* the day label is the quiet part; the markup now wraps the HOURS in <b> */
 /* O10: everything in this bar is white; only weight separates the day label
    from the hours, so the line reads as one thing rather than two tones */
-.topbar .day{color:#fff;font-weight:400}
 .topbar-right{display:flex;gap:22px}
 .topbar-right a:hover{color:#fff}
 
@@ -238,6 +238,7 @@ section{padding:84px 0}
 .status.is-open{color:#fff}
 .status.is-closed{color:#C2C2CB}
 .hero-meta .week{color:#A8A8B4}
+.hero-meta .week b{color:#fff;font-weight:600}
 
 /* ---------- brand strip ---------- */
 .brandstrip{background:var(--ink-2);border-bottom:1px solid var(--line-dark);
