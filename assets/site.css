@@ -243,14 +243,17 @@ section{padding:84px 0}
 /* ---------- brand strip ---------- */
 .brandstrip{background:var(--ink-2);border-bottom:1px solid var(--line-dark);
   padding:24px 0}
-/* Two rows set identically rather than one headline list plus a footnote: the
-   shop takes trucks and trailers, and the strip should not rank one over the
-   other. The labels share a column so both lists start on the same edge. */
-.brandstrip .wrap{display:flex;flex-direction:column;gap:14px}
-.bs-row{display:flex;align-items:baseline;gap:28px;flex-wrap:wrap}
-.brandstrip .label{flex:0 0 94px;font-size:13px;font-weight:700;letter-spacing:.14em;
+/* One line, both groups set in the same type: the strip used to shout the makes
+   and whisper the trailers, which read as ranking one above the other. The gap
+   before each label is wider than the gap between items, so the two groups still
+   read as groups without a rule or a second row. */
+.brandstrip .wrap{display:block}
+.bs-line{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.brandstrip .label{flex:0 0 auto;font-size:13px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--orange);line-height:1.5}
-.makes{display:flex;gap:20px;flex-wrap:wrap;align-items:baseline}
+.makes + .label{margin-left:18px}
+.makes{display:flex;gap:18px;align-items:baseline}
+.bs-line > .makes{flex:0 0 auto;flex-wrap:nowrap}
 .makes span{
   font-family:var(--font-display);font-style:normal;font-weight:700;
   font-size:20px;text-transform:uppercase;color:#C2C2CB;letter-spacing:.01em;
@@ -534,6 +537,7 @@ section{padding:84px 0}
   .stat .v{font-size:40px}
   .loc-info .addr{font-size:26px}
   .makes span{font-size:16px}
+  .bs-line > .makes{flex-wrap:wrap}
   .makes{gap:14px}
   .brandstrip .label{flex-basis:100%}
   .cols,.loc-grid,.wedge .wrap,.fleet .wrap{gap:36px}
